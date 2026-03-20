@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ff7a18, #ffb347);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+/* Form */
+.login-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    text-align: center;
+    color: white;
+}
+
+/* Title */
+.login-form h2 {
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Button */
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #ff7a18;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-form button:hover {
+    background: #ff5200;
+}
+
+/* Link */
+.link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.link a {
+    color: #fff;
+    text-decoration: underline;
+}
+    </style>
+
+<div class="login-container">
+    <form class="login-form" method="POST">
+        {% csrf_token %}
+        <h2>Login</h2>
+        {{ form.as_p }}
+        <button type="submit">Sign In</button>
+        <p class="link">Don't have an account? <a href="/googleauth/register/">Register</a></p>
+    </form>
+
+    {% load socialaccount %}
+<a href="{% provider_login_url 'google' %}">Login with Google</a>
+</div>
